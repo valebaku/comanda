@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Material+Symbols+Rounded:opsz,wght,FILL@24,500,1&display=swap">
+</helmet>
+<div style="position:relative; width:{{ W }}px; height:{{ H }}px; font-family:var(--font-family); font-variant-numeric:tabular-nums;">
+  <div style="position:absolute; left:{{ tb.x }}px; top:{{ tb.y }}px; width:{{ tb.w }}px; height:{{ tb.h }}px; border-radius:{{ tb.r }}; background:var(--color-surface-2); border:2px solid var(--color-border); display:flex; align-items:center; justify-content:center; box-sizing:border-box;">
+    <button onClick="{{ onCenter }}" style="min-width:88px; height:56px; padding:0 16px; border-radius:var(--radius-full); border:2px solid {{ cBorder }}; background:{{ cBg }}; color:{{ cFg }}; font:inherit; font-weight:600; font-size:15px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0; cursor:pointer; box-shadow:var(--shadow-sm);">
+      <span style="display:flex; align-items:center; gap:6px;"><span style="font-family:'Material Symbols Rounded'; font-size:20px;">table_restaurant</span>{{ centerLabel }}</span>
+      <sc-if value="{{ hasCenterCount }}" hint-placeholder-val="{{ false }}"><span style="font-size:11px; font-weight:500; opacity:.85;">{{ centerCount }} righe</span></sc-if>
+    </button>
+  </div>
+  <sc-for list="{{ seatList }}" as="s" hint-placeholder-count="4">
+    <button onClick="{{ s.onClick }}" aria-pressed="{{ s.sel }}" style="position:absolute; left:{{ s.x }}px; top:{{ s.y }}px; width:{{ s.d }}px; height:{{ s.d }}px; border-radius:{{ s.r }}; border:2px {{ s.bs }} {{ s.bc }}; background:{{ s.bg }}; color:{{ s.fg }}; font:inherit; padding:2px; box-sizing:border-box; display:flex; flex-direction:column; align-items:center; justify-content:center; cursor:pointer; box-shadow:{{ s.sh }};">
+      <span style="font-weight:600; font-size:{{ s.fs }}px; line-height:1;">{{ s.l }}</span>
+      <sc-if value="{{ s.showG }}" hint-placeholder-val="{{ false }}"><span style="font-size:11px; line-height:1.2; max-width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; margin-top:3px;">{{ s.g }}</span></sc-if>
+      <sc-if value="{{ s.a }}" hint-placeholder-val="{{ false }}"><span title="Allergie" style="position:absolute; top:-7px; right:-7px; width:22px; height:22px; border-radius:50%; background:var(--status-allergen); color:#fff; border:2px solid var(--color-surface); display:flex; align-items:center; justify-content:center; font-family:'Material Symbols Rounded'; font-size:14px;">warning</span></sc-if>
+      <sc-if value="{{ s.hasN }}" hint-placeholder-val="{{ false }}"><span style="position:absolute; bottom:-7px; right:-7px; min-width:22px; height:22px; padding:0 5px; box-sizing:border-box; border-radius:11px; background:var(--color-text); color:var(--color-surface); border:2px solid var(--color-surface); font-size:11px; font-weight:600; display:flex; align-items:center; justify-content:center;">{{ s.n }}</span></sc-if>
+    </button>
+  </sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:380,&quot;height&quot;:300},&quot;shape&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;round&quot;,&quot;square&quot;,&quot;rect&quot;],&quot;default&quot;:&quot;round&quot;,&quot;tsType&quot;:&quot;'round'|'square'|'rect'&quot;},&quot;width&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:340,&quot;tsType&quot;:&quot;number&quot;},&quot;height&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:260,&quot;tsType&quot;:&quot;number&quot;},&quot;seatSize&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:60,&quot;min&quot;:36,&quot;max&quot;:80,&quot;tsType&quot;:&quot;number&quot;},&quot;seats&quot;:{&quot;editor&quot;:null,&quot;default&quot;:[{&quot;l&quot;:&quot;P1&quot;,&quot;g&quot;:&quot;Luca&quot;,&quot;n&quot;:2},{&quot;l&quot;:&quot;P2&quot;,&quot;g&quot;:&quot;Giulia&quot;,&quot;a&quot;:true,&quot;n&quot;:1},{&quot;l&quot;:&quot;P3&quot;},{&quot;l&quot;:&quot;P4&quot;}],&quot;tsType&quot;:&quot;{l:string,g?:string,a?:boolean,n?:number,x?:boolean}[]&quot;},&quot;selected&quot;:{&quot;editor&quot;:null,&quot;default&quot;:[],&quot;tsType&quot;:&quot;number[]&quot;},&quot;centerSelected&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;centerCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:0,&quot;tsType&quot;:&quot;number&quot;},&quot;centerLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Tavolo&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;onSeat&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(i:number)=&gt;void&quot;},&quot;onCenter&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;()=&gt;void&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const W = Number(p.width ?? 340), H = Number(p.height ?? 260);
+    const shape = p.shape ?? 'round';
+    const seats = p.seats ?? [{l:'P1'},{l:'P2'},{l:'P3'},{l:'P4'}];
+    const sel = p.selected ?? [];
+    const d = Number(p.seatSize ?? 60);
+    const n = seats.length, gap = 8, m = d + gap;
+    let tb, pos = [];
+    if (shape === 'round') {
+      const D = Math.min(W, H) - 2 * m;
+      tb = { x: (W - D) / 2, y: (H - D) / 2, w: D, h: D, r: '50%' };
+      const R = D / 2 + gap + d / 2;
+      for (let i = 0; i < n; i++) {
+        const a = -Math.PI / 2 + (i / n) * Math.PI * 2;
+        pos.push([W / 2 + R * Math.cos(a) - d / 2, H / 2 + R * Math.sin(a) - d / 2]);
+      }
+    } else {
+      tb = { x: m, y: m, w: W - 2 * m, h: H - 2 * m, r: 'var(--radius-md)' };
+      const sides = shape === 'square' ? ['t','r','b','l'] : (n >= 6 ? ['l','t','r','b'] : ['t','b']);
+      const buckets = { t: [], r: [], b: [], l: [] };
+      if (shape === 'square') seats.forEach((_, i) => buckets[sides[i % 4]].push(i));
+      else if (n >= 6) { buckets.l.push(0); const rest = n - 2; const top = Math.ceil(rest / 2); for (let i = 1; i <= top; i++) buckets.t.push(i); buckets.r.push(top + 1); for (let i = top + 2; i < n; i++) buckets.b.push(i); }
+      else { const top = Math.ceil(n / 2); seats.forEach((_, i) => (i < top ? buckets.t : buckets.b).push(i)); }
+      buckets.b.reverse(); buckets.l.reverse();
+      const place = (arr, fn) => arr.forEach((idx, k) => { pos[idx] = fn((k + 1) / (arr.length + 1)); });
+      place(buckets.t, f => [tb.x + tb.w * f - d / 2, tb.y - gap - d]);
+      place(buckets.b, f => [tb.x + tb.w * (1 - f) - d / 2, tb.y + tb.h + gap]);
+      place(buckets.r, f => [tb.x + tb.w + gap, tb.y + tb.h * f - d / 2]);
+      place(buckets.l, f => [tb.x - gap - d, tb.y + tb.h * (1 - f) - d / 2]);
+    }
+    const seatList = seats.map((s, i) => {
+      const on = sel.includes(i);
+      const has = (s.n ?? 0) > 0;
+      return {
+        l: s.l, g: s.g || '', a: !!s.a, n: s.n ?? 0, hasN: has, showG: !!s.g && d >= 56,
+        x: pos[i][0], y: pos[i][1], d, r: shape === 'round' ? '50%' : 'var(--radius-md)', fs: d >= 56 ? 16 : 13,
+        sel: on,
+        bg: on ? 'var(--color-primary)' : 'var(--color-surface)',
+        fg: on ? 'var(--color-on-primary)' : 'var(--color-text)',
+        bc: on ? 'var(--color-primary)' : (has ? 'var(--color-primary)' : 'var(--color-border)'),
+        bs: s.x ? 'dashed' : 'solid',
+        sh: on ? '0 0 0 4px color-mix(in oklab, var(--color-primary) 25%, transparent)' : 'var(--shadow-sm)',
+        onClick: () => p.onSeat && p.onSeat(i)
+      };
+    });
+    const cs = !!p.centerSelected;
+    return {
+      W, H, tb, seatList,
+      centerLabel: p.centerLabel ?? 'Tavolo',
+      centerCount: p.centerCount ?? 0, hasCenterCount: (p.centerCount ?? 0) > 0,
+      cBg: cs ? 'var(--color-primary)' : 'var(--color-surface)',
+      cFg: cs ? 'var(--color-on-primary)' : 'var(--color-text)',
+      cBorder: cs ? 'var(--color-primary)' : 'var(--color-border)',
+      onCenter: () => p.onCenter && p.onCenter()
+    };
+  }
+}
+</script>
+</body>
+</html>

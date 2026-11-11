@@ -1,0 +1,169 @@
+/* Stili dell'app. I valori vengono da tokens.css (design Claude Design). */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-family);
+  font-size: var(--font-size-md);
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+  background: var(--color-bg);
+  color: var(--color-text);
+  -webkit-tap-highlight-color: transparent;
+}
+
+button, input, select, textarea { font: inherit; color: inherit; }
+
+:focus-visible { outline: var(--focus-ring); outline-offset: 2px; }
+
+/* Icone Material Symbols (FILL 1, wght 500) */
+.icona {
+  font-family: 'Material Symbols Rounded';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  direction: ltr;
+  font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'FILL' 1, 'wght' 500;
+  flex: none;
+  display: inline-block;
+  overflow: hidden;
+  width: 1em;
+}
+
+/* ---------------------------------------------------------------- App bar */
+.appbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: calc(var(--appbar-h) + env(safe-area-inset-top));
+  padding: env(safe-area-inset-top) var(--space-4) 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+.appbar__titoli { flex: 1; min-width: 0; }
+.appbar__locale { font-size: var(--font-size-xs); color: var(--color-text-muted); }
+.appbar__locale:empty { display: none; }
+.appbar__titolo {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.appbar__azioni { display: flex; gap: var(--space-2); }
+
+@media (min-width: 768px) {
+  .appbar { padding-inline: var(--space-6) var(--space-4); }
+}
+
+/* ---------------------------------------------------------------- Vista */
+.vista {
+  flex: 1;
+  padding: var(--space-4);
+  padding-bottom: calc(var(--space-4) + env(safe-area-inset-bottom));
+  outline: none;
+}
+@media (min-width: 768px) { .vista { padding: var(--space-6); } }
+
+/* ---------------------------------------------------------------- Pulsanti */
+.btn {
+  min-height: var(--touch-target);
+  min-width: var(--touch-target);
+  padding: 0 var(--space-4);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 15px;
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  transition: background var(--duration-fast), transform var(--duration-fast);
+}
+.btn:active { background: var(--color-surface-2); transform: scale(.98); }
+.btn:disabled, .btn[aria-disabled="true"] { opacity: .6; cursor: not-allowed; transform: none; }
+
+.btn--primario {
+  min-height: 56px;
+  border: 0;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  font-size: var(--font-size-md);
+}
+.btn--primario:active { background: color-mix(in oklab, var(--color-primary) 82%, #000); }
+
+.btn--pericolo { border: 0; background: var(--color-danger); color: #fff; }
+.btn--pericolo-outline { border: 2px solid var(--color-danger); background: transparent; color: var(--color-danger); }
+
+.btn--icona { padding: 0; border-radius: var(--radius-full); }
+
+/* ---------------------------------------------------------------- Stati tavolo */
+.stato { display: inline-flex; align-items: center; gap: var(--space-1); font-weight: var(--font-weight-medium); }
+.stato--libero   { background: var(--stato-libero-bg);   color: var(--stato-libero-fg);   border: 2px dashed var(--stato-libero-bordo); }
+.stato--occupato { background: var(--stato-occupato-bg); color: var(--stato-occupato-fg); }
+.stato--attesa   { background: var(--stato-attesa-bg);   color: var(--stato-attesa-fg); }
+.stato--conto    { background: var(--stato-conto-bg);    color: var(--stato-conto-fg); }
+
+/* ---------------------------------------------------------------- Empty state */
+.vuoto {
+  max-width: 420px;
+  margin: var(--space-8) auto;
+  padding: var(--space-6) var(--space-4);
+  border: 1.5px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  text-align: center;
+}
+.vuoto p { margin: 0; }
+.vuoto__icona { font-size: 40px; color: var(--color-text-muted); }
+.vuoto__titolo { font-size: var(--font-size-lg); font-weight: var(--font-weight-bold); }
+.vuoto__testo { color: var(--color-text-muted); margin-bottom: var(--space-2) !important; }
+
+.segnaposto { color: var(--color-text-muted); }
+
+/* ---------------------------------------------------------------- Admin */
+.menu-admin {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-3);
+}
+.menu-admin__voce {
+  min-height: 72px;
+  padding: var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+}
+.menu-admin__voce .icona { color: var(--color-primary); }
+.menu-admin__voce:active { background: var(--color-surface-2); }

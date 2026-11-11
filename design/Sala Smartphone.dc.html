@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Material+Symbols+Rounded:opsz,wght,FILL@24,500,1&display=swap">
+<style>body{margin:0;background:#D9D3C8}a{color:#1B5B52}a:hover{color:#0F3D37}button{font-family:inherit}button:focus-visible{outline:3px solid #34519E;outline-offset:2px}</style>
+</helmet>
+<div data-theme="{{ theme }}" style="min-height:100vh; padding:56px; box-sizing:border-box; font-family:var(--font-family); font-variant-numeric:tabular-nums; background:#D9D3C8; display:flex; flex-direction:column; gap:40px;">
+  <div style="display:flex; flex-direction:column; gap:6px; color:#1D1A16;">
+    <div style="font-size:13px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:#5B544A;">Gestione Tavoli · Interfaccia cameriere</div>
+    <div style="font-size:34px; font-weight:600;">Sala — smartphone 390 × 844</div>
+    <div style="font-size:15px; color:#5B544A; max-width:760px; text-wrap:pretty;">Schermate prioritarie 16, 18, 20, 22, 25. Tema chiaro/scuro dal pannello Tweaks. Nella vista tavolo (18) i posti e i filtri sono interattivi.</div>
+  </div>
+
+  <div style="display:flex; flex-wrap:wrap; gap:48px; align-items:flex-start;">
+
+    <!-- 16 PIANTINA -->
+    <div id="16a" style="display:flex; flex-direction:column; gap:12px;">
+      <div style="display:flex; align-items:center; gap:10px; font-size:15px; font-weight:600; color:#1D1A16;"><span style="background:#1D1A16; color:#fff; border-radius:6px; padding:3px 8px; font-size:13px;">16a</span>Mappa tavoli · piantina</div>
+      <div style="width:390px; height:844px; border:10px solid #141210; border-radius:48px; overflow:hidden; position:relative; display:flex; flex-direction:column; background:var(--color-bg); color:var(--color-text); box-shadow:0 30px 60px rgba(0,0,0,.25);">
+        <div style="height:40px; flex:none; display:flex; align-items:center; justify-content:space-between; padding:0 26px; font-size:14px; font-weight:600;"><span>21:14</span><span style="font-family:'Material Symbols Rounded'; font-size:17px; letter-spacing:2px;">signal_cellular_alt wifi battery_full</span></div>
+        <div style="height:60px; flex:none; display:flex; align-items:center; gap:8px; padding:0 8px 0 16px;">
+          <div style="flex:1; min-width:0;"><div style="font-size:12px; color:var(--color-text-muted);">Trattoria Da Rina</div><div style="font-size:22px; font-weight:600;">Sala</div></div>
+          <button style="white-space:nowrap; height:44px; display:flex; align-items:center; gap:8px; padding:0 12px 0 4px; border-radius:var(--radius-full); border:1px solid var(--color-border); background:var(--color-surface); color:var(--color-text); font-size:14px; font-weight:500;"><span style="width:36px; height:36px; border-radius:50%; background:var(--color-primary); color:var(--color-on-primary); display:flex; align-items:center; justify-content:center; font-weight:600;">M</span>Marco</button>
+          <button aria-label="Menu" style="width:48px; height:48px; border:0; background:transparent; color:var(--color-text); font-family:'Material Symbols Rounded'; font-size:24px;">more_vert</button>
+        </div>
+        <div style="flex:none; display:flex; gap:4px; padding:0 12px; border-bottom:1px solid var(--color-border);">
+          <div style="height:48px; padding:0 12px; display:flex; align-items:center; gap:6px; font-size:15px; font-weight:600; color:var(--color-primary); border-bottom:3px solid var(--color-primary); box-sizing:border-box;">Sala interna<span style="font-size:12px; background:var(--color-primary); color:var(--color-on-primary); border-radius:10px; padding:1px 7px;">6</span></div>
+          <div style="height:48px; padding:0 12px; display:flex; align-items:center; gap:6px; font-size:15px; font-weight:500; color:var(--color-text-muted);">Dehors<span style="font-size:12px; background:var(--color-surface-2); border-radius:10px; padding:1px 7px;">2</span></div>
+          <div style="height:48px; padding:0 12px; display:flex; align-items:center; gap:6px; font-size:15px; font-weight:500; color:var(--color-text-muted);">Saletta<span style="font-size:12px; background:var(--color-surface-2); border-radius:10px; padding:1px 7px;">0</span></div>
+        </div>
+        <div style="flex:none; display:flex; align-items:center; justify-content:space-between; padding:12px 16px;">
+          <div style="display:flex; padding:3px; border-radius:var(--radius-full); background:var(--color-surface-2);">
+            <span style="height:38px; padding:0 14px; display:flex; align-items:center; gap:6px; border-radius:var(--radius-full); background:var(--color-surface); box-shadow:var(--shadow-sm); font-size:14px; font-weight:600;"><span style="font-family:'Material Symbols Rounded'; font-size:18px;">map</span>Piantina</span>
+            <span style="height:38px; padding:0 14px; display:flex; align-items:center; gap:6px; font-size:14px; font-weight:500; color:var(--color-text-muted);"><span style="font-family:'Material Symbols Rounded'; font-size:18px;">grid_view</span>Griglia</span>
+          </div>
+          <div style="font-size:13px; color:var(--color-text-muted); text-align:right;"><b style="color:var(--color-text);">6</b> aperti · <b style="color:var(--color-text);">24</b> coperti</div>
+        </div>
+        <div style="flex:none; margin:0 16px; height:470px; position:relative; background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-lg); background-image:radial-gradient(var(--color-border) 1px, transparent 1px); background-size:20px 20px;">
+          <sc-for list="{{ tavoli }}" as="t" hint-placeholder-count="10">
+            <div style="position:absolute; left:{{ t.x }}px; top:{{ t.y }}px; width:{{ t.w }}px; height:{{ t.h }}px; border-radius:{{ t.r }}; background:{{ t.bg }}; color:{{ t.fg }}; border:2px {{ t.bs }} {{ t.bc }}; box-sizing:border-box; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; box-shadow:var(--shadow-sm);">
+              <span style="font-size:20px; font-weight:600; line-height:1;">{{ t.lab }}</span>
+              <span style="display:flex; align-items:center; gap:3px; font-size:12px; font-weight:500;"><span style="font-family:'Material Symbols Rounded'; font-size:15px;">{{ t.icon }}</span>{{ t.meta }}</span>
+              <sc-if value="{{ t.alg }}" hint-placeholder-val="{{ false }}"><span aria-label="Allergie presenti" style="position:absolute; top:-8px; right:-8px; width:26px; height:26px; border-radius:50%; background:var(--status-allergen); color:#fff; border:2px solid var(--color-surface); display:flex; align-items:center; justify-content:center; font-family:'Material Symbols Rounded'; font-size:16px;">warning</span></sc-if>
+            </div>
+          </sc-for>
+        </div>
+        <div style="flex:1; display:flex; flex-wrap:wrap; align-content:center; gap:6px 12px; padding:0 18px; font-size:12px; color:var(--color-text-muted);">
+          <span style="display:flex; align-items:center; gap:4px;"><span style="width:14px; height:14px; border-radius:4px; border:2px dashed var(--status-free); box-sizing:border-box;"></span>Libero</span>
+          <span style="display:flex; align-items:center; gap:4px;"><span style="width:14px; height:14px; border-radius:4px; background:var(--status-open); border:2px solid var(--color-primary); box-sizing:border-box;"></span>Aperto</span>
+          <span style="display:flex; align-items:center; gap:4px;"><span style="width:14px; height:14px; border-radius:4px; background:var(--status-active);"></span>In corso</span>
+          <span style="display:flex; align-items:center; gap:4px;"><span style="width:14px; height:14px; border-radius:4px; background:var(--status-held);"></span>In attesa</span>
+          <span style="display:flex; align-items:center; gap:4px;"><span style="width:14px; height:14px; border-radius:4px; background:var(--status-bill);"></span>Conto</span>
+          <span style="display:flex; align-items:center; gap:4px;"><span style="width:14px; height:14px; border-radius:50%; background:var(--status-allergen); color:#fff; font-family:'Material Symbols Rounded'; font-size:10px; display:flex; align-items:center; justify-content:center;">warning</span>Allergie</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 16 GRIGLIA -->
+    <div id="16b" style="display:flex; flex-direction:column; gap:12px;">
+      <div style="display:flex; align-items:center; gap:10px; font-size:15px; font-weight:600; color:#1D1A16;"><span style="background:#1D1A16; color:#fff; border-radius:6px; padding:3px 8px; font-size:13px;">16b</span>Mappa tavoli · griglia</div>
+      <div style="width:390px; height:844px; border:10px solid #141210; border-radius:48px; overflow:hidden; position:relative; display:flex; flex-direction:column; background:var(--color-bg); color:var(--color-text); box-shadow:0 30px 60px rgba(0,0,0,.25);">
+        <div style="height:40px; flex:none; display:flex; align-items:center; justify-content:space-between; padding:0 26px; font-size:14px; font-weight:600;"><span>21:14</span><span style="font-family:'Material Symbols Rounded'; font-size:17px; letter-spacing:2px;">signal_cellular_alt wifi battery_full</span></div>
+        <div style="height:60px; flex:none; display:flex; align-items:center; gap:8px; padding:0 8px 0 16px;">
+          <div style="flex:1;"><div style="font-size:12px; color:var(--color-text-muted);">Trattoria Da Rina</div><div style="font-size:22px; font-weight:600;">Sala</div></div>
+          <button style="white-space:nowrap; height:44px; display:flex; align-items:center; gap:8px; padding:0 12px 0 4px; border-radius:var(--radius-full); border:1px solid var(--color-border); background:var(--color-surface); color:var(--color-text); font-size:14px; font-weight:500;"><span style="width:36px; height:36px; border-radius:50%; background:var(--color-primary); color:var(--color-on-primary); display:flex; align-items:center; justify-content:center; font-weight:600;">M</span>Marco</button>
+          <button aria-label="Menu" style="width:48px; height:48px; border:0; background:transparent; color:var(--color-text); font-family:'Material Symbols Rounded'; font-size:24px;">more_vert</button>
+        </div>
+        <div style="flex:none; display:flex; gap:4px; padding:0 12px; border-bottom:1px solid var(--color-border);">
+          <div style="height:48px; padding:0 12px; display:flex; align-items:center; gap:6px; font-size:15px; font-weight:600; color:var(--color-primary); border-bottom:3px solid var(--color-primary); box-sizing:border-box;">Sala interna<span style="font-size:12px; background:var(--color-primary); color:var(--color-on-primary); border-radius:10px; padding:1px 7px;">6</span></div>
+          <div style="height:48px; padding:0 12px; display:flex; align-items:center; gap:6px; font-size:15px; font-weight:500; color:var(--color-text-muted);">Dehors<span style="font-size:12px; background:var(--color-surface-2); border-radius:10px; padding:1px 7px;">2</span></div>
+          <div style="height:48px; padding:0 12px; display:flex; align-items:center; gap:6px; font-size:15px; font-weight:500; color:var(--color-text-muted);">Saletta<span style="font-size:12px; background:var(--color-surface-2); border-radius:10px; padding:1px 7px;">0</span></div>
+        </div>
+        <div style="flex:none; display:flex; align-items:center; justify-content:space-between; padding:12px 16px;">
+          <div style="display:flex; padding:3px; border-radius:var(--radius-full); background:var(--color-surface-2);">
+            <span style="height:38px; padding:0 14px; display:flex; align-items:center; gap:6px; font-size:14px; font-weight:500; color:var(--color-text-muted);"><span style="font-family:'Material Symbols Rounded'; font-size:18px;">map</span>Piantina</span>
+            <span style="height:38px; padding:0 14px; display:flex; align-items:center; gap:6px; border-radius:var(--radius-full); background:var(--color-surface); box-shadow:var(--shadow-sm); font-size:14px; font-weight:600;"><span style="font-family:'Material Symbols Rounded'; font-size:18px;">grid_view</span>Griglia</span>
+          </div>
+          <div style="font-size:13px; color:var(--color-text-muted);">Ordina: <b style="color:var(--color-text);">stato</b></div>
+        </div>
+        <div style="flex:1; overflow:hidden; padding:0 16px; display:grid; grid-template-columns:1fr 1fr; gap:10px; align-content:start;">
+          <sc-for list="{{ tavoli }}" as="t" hint-placeholder-count="10">
+            <div style="position:relative; min-height:96px; padding:12px; border-radius:var(--radius-md); background:{{ t.bg }}; color:{{ t.fg }}; border:2px {{ t.bs }} {{ t.bc }}; box-sizing:border-box; display:flex; flex-direction:column; justify-content:space-between; gap:6px;">
+              <div style="display:flex; align-items:center; justify-content:space-between;"><span style="font-size:22px; font-weight:600;">{{ t.lab }}</span><span style="display:flex; align-items:center; gap:4px; font-size:13px; font-weight:500;"><span style="font-family:'Material Symbols Rounded'; font-size:16px;">person</span>{{ t.cop }}</span></div>
+              <div style="display:flex; align-items:center; gap:4px; font-size:13px; font-weight:500;"><span style="font-family:'Material Symbols Rounded'; font-size:17px;">{{ t.icon }}</span>{{ t.txt }}<span style="margin-left:auto;">{{ t.tm }}</span></div>
+              <sc-if value="{{ t.alg }}" hint-placeholder-val="{{ false }}"><span aria-label="Allergie presenti" style="position:absolute; top:-8px; right:-8px; width:26px; height:26px; border-radius:50%; background:var(--status-allergen); color:#fff; border:2px solid var(--color-bg); display:flex; align-items:center; justify-content:center; font-family:'Material Symbols Rounded'; font-size:16px;">warning</span></sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- 18 VISTA TAVOLO -->
+    <div id="18" style="display:flex; flex-direction:column; gap:12px;">
+      <div style="display:flex; align-items:center; gap:10px; font-size:15px; font-weight:600; color:#1D1A16;"><span style="background:#1D1A16; color:#fff; border-radius:6px; padding:3px 8px; font-size:13px;">18</span>Vista tavolo · interattiva</div>
+      <div style="width:390px; height:844px; border:10px solid #141210; border-radius:48px; overflow:hidden; position:relative; display:flex; flex-direction:column; background:var(--color-bg); color:var(--color-text); box-shadow:0 30px 60px rgba(0,0,0,.25);">
+        <div style="height:40px; flex:none; display:flex; align-items:center; justify-content:space-between; padding:0 26px; font-size:14px; font-weight:600;"><span>21:14</span><span style="font-family:'Material Symbols Rounded'; font-size:17px; letter-spacing:2px;">signal_cellular_alt wifi battery_full</span></div>
+        <div style="height:60px; flex:none; display:flex; align-items:center; gap:4px; padding:0 4px;">
+          <button aria-label="Indietro" style="width:48px; height:48px; border:0; background:transparent; color:var(--color-text); font-family:'Material Symbols Rounded'; font-size:24px;">arrow_back</button>
+          <div style="flex:1; min-width:0;"><div style="display:flex; align-items:center; gap:8px;"><span style="font-size:22px; font-weight:600;">T5</span><span style="display:flex; align-items:center; gap:3px; height:24px; padding:0 8px; border-radius:12px; background:var(--status-active); color:var(--color-on-primary); font-size:12px; font-weight:600;"><span style="font-family:'Material Symbols Rounded'; font-size:14px;">restaurant</span>In corso</span></div><div style="font-size:13px; color:var(--color-text-muted);">Sala interna · 6 coperti · Marco</div></div>
+          <span style="display:flex; align-items:center; gap:4px; padding:0 10px; height:32px; border-radius:16px; background:var(--color-surface-2); font-size:14px; font-weight:600;"><span style="font-family:'Material Symbols Rounded'; font-size:17px;">timer</span>1h12′</span>
+        </div>
+        <div style="flex:none; display:flex; justify-content:center; padding:4px 0 0;">
+          <dc-import name="TavoloPosti" shape="rect" width="358" height="226" seat-size="56" seats="{{ posti }}" selected="{{ sel }}" center-selected="{{ centerSel }}" center-count="2" on-seat="{{ onSeat }}" on-center="{{ onCenter }}" hint-size="358px,226px"></dc-import>
+        </div>
+        <div style="flex:none; display:flex; align-items:center; gap:8px; padding:6px 16px;">
+          <button onClick="{{ toggleMulti }}" aria-pressed="{{ multi }}" style="white-space:nowrap; height:40px; display:flex; align-items:center; gap:6px; padding:0 12px; border-radius:var(--radius-full); border:1.5px solid {{ multiBc }}; background:{{ multiBg }}; color:{{ multiFg }}; font-size:14px; font-weight:600; white-space:nowrap; flex:none;"><span style="font-family:'Material Symbols Rounded'; font-size:18px;">{{ multiIcon }}</span>Più posti</button>
+          <span style="flex:1; font-size:13px; color:var(--color-text-muted); text-wrap:pretty;">{{ hint }}</span>
+        </div>
+        <div style="flex:none; display:flex; gap:6px; padding:4px 16px 8px; overflow:hidden;">
+          <sc-for list="{{ filtri }}" as="f" hint-placeholder-count="8">
+            <button onClick="{{ f.onClick }}" style="flex:none; height:36px; padding:0 12px; border-radius:var(--radius-full); border:1.5px solid {{ f.bc }}; background:{{ f.bg }}; color:{{ f.fg }}; font-size:13px; font-weight:600;">{{ f.l }}</button>
+          </sc-for>
+        </div>
+        <div style="flex:1; overflow:hidden; padding:0 16px 120px; display:flex; flex-direction:column; gap:12px;">
+          <sc-for list="{{ ordine }}" as="g" hint-placeholder-count="3">
+            <div style="display:flex; flex-direction:column; gap:6px;">
+              <div style="display:flex; align-items:center; gap:8px; font-size:13px;"><span style="font-weight:600; text-transform:uppercase; letter-spacing:.06em;">{{ g.name }}</span><span style="display:flex; align-items:center; gap:3px; color:{{ g.col }}; font-weight:500;"><span style="font-family:'Material Symbols Rounded'; font-size:16px;">{{ g.icon }}</span>{{ g.info }}</span></div>
+              <sc-for list="{{ g.lines }}" as="l" hint-placeholder-count="2">
+                <div style="display:grid; grid-template-columns:auto 1fr auto; gap:10px; align-items:center; min-height:52px; padding:8px 10px; border-radius:var(--radius-md); background:var(--color-surface); border:1.5px {{ l.bs }} {{ l.bc }}; box-sizing:border-box;">
+                  <span style="display:flex; align-items:center; gap:2px; height:26px; padding:0 8px 0 6px; border-radius:13px; background:var(--color-surface-2); font-size:12px; font-weight:600;"><span style="font-family:'Material Symbols Rounded'; font-size:15px;">{{ l.ai }}</span>{{ l.at }}</span>
+                  <div style="min-width:0;"><div style="font-size:15px; font-weight:500; text-decoration:{{ l.td }}; color:{{ l.col }};">{{ l.q }}× {{ l.name }}</div><sc-if value="{{ l.hasSub }}" hint-placeholder-val="{{ false }}"><div style="font-size:12px; color:var(--color-text-muted);">{{ l.sub }}</div></sc-if></div>
+                  <div style="text-align:right;"><div style="font-size:15px; font-weight:600; text-decoration:{{ l.td }}; color:{{ l.col }};">{{ l.price }}</div><div style="display:flex; align-items:center; justify-content:flex-end; gap:2px; font-size:11px; font-weight:600; color:{{ l.stc }};"><span style="font-family:'Material Symbols Rounded'; font-size:13px;">{{ l.sti }}</span>{{ l.st }}</div></div>
+                </div>
+              </sc-for>
+            </div>
+          </sc-for>
+        </div>
+        <div style="position:absolute; left:12px; right:12px; bottom:96px; height:52px; border-radius:var(--radius-md); background:var(--color-text); color:var(--color-surface); display:flex; align-items:center; gap:10px; padding:0 6px 0 16px; box-shadow:var(--shadow-lg); font-size:14px;"><span style="font-family:'Material Symbols Rounded'; font-size:18px;">check</span><span style="flex:1;">Aggiunto: Branzino al forno · P5</span><button style="white-space:nowrap; height:44px; padding:0 12px; border:0; background:transparent; color:var(--color-surface); font-weight:600; font-size:14px; text-decoration:underline;">Annulla</button></div>
+        <div style="position:absolute; left:0; right:0; bottom:0; height:88px; padding:8px 12px 20px; box-sizing:border-box; display:flex; gap:8px; background:var(--color-surface); border-top:1px solid var(--color-border);">
+          <button style="white-space:nowrap; flex:1; height:56px; border:0; border-radius:var(--radius-md); background:var(--color-primary); color:var(--color-on-primary); font-size:16px; font-weight:600; display:flex; align-items:center; justify-content:center; gap:8px;"><span style="font-family:'Material Symbols Rounded'; font-size:20px;">send</span>Invia comanda<span style="min-width:24px; height:24px; border-radius:12px; background:var(--color-on-primary); color:var(--color-primary); font-size:13px; display:flex; align-items:center; justify-content:center;">3</span></button>
+          <button style="white-space:nowrap; width:60px; height:56px; border:1px solid var(--color-border); border-radius:var(--radius-md); background:var(--color-surface); color:var(--color-text); font-size:11px; font-weight:600; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1px;"><span style="font-family:'Material Symbols Rounded'; font-size:22px; color:var(--color-warning);">play_circle</span>Marcia</button>
+          <button style="white-space:nowrap; width:60px; height:56px; border:1px solid var(--color-border); border-radius:var(--radius-md); background:var(--color-surface); color:var(--color-text); font-size:11px; font-weight:600; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1px;"><span style="font-family:'Material Symbols Rounded'; font-size:22px;">receipt_long</span>Conto</button>
+          <button aria-label="Altre azioni" style="width:48px; height:56px; border:0; background:transparent; color:var(--color-text); font-family:'Material Symbols Rounded'; font-size:24px;">more_horiz</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 20 SELEZIONE PIATTO -->
+    <div id="20" style="display:flex; flex-direction:column; gap:12px;">
+      <div style="display:flex; align-items:center; gap:10px; font-size:15px; font-weight:600; color:#1D1A16;"><span style="background:#1D1A16; color:#fff; border-radius:6px; padding:3px 8px; font-size:13px;">20</span>Selezione piatto</div>
+      <div style="width:390px; height:844px; border:10px solid #141210; border-radius:48px; overflow:hidden; position:relative; display:flex; flex-direction:column; background:var(--color-bg); color:var(--color-text); box-shadow:0 30px 60px rgba(0,0,0,.25);">
+        <div style="height:40px; flex:none; display:flex; align-items:center; justify-content:space-between; padding:0 26px; font-size:14px; font-weight:600;"><span>21:15</span><span style="font-family:'Material Symbols Rounded'; font-size:17px; letter-spacing:2px;">signal_cellular_alt wifi battery_full</span></div>
+        <div style="height:60px; flex:none; display:flex; align-items:center; gap:4px; padding:0 4px;">
+          <button aria-label="Chiudi" style="width:48px; height:48px; border:0; background:transparent; color:var(--color-text); font-family:'Material Symbols Rounded'; font-size:24px;">close</button>
+          <div style="flex:1;"><div style="font-size:20px; font-weight:600;">Aggiungi piatto</div><div style="font-size:13px; color:var(--color-text-muted);">T5 · portata automatica dalla categoria</div></div>
+          <button aria-label="Vista griglia" style="width:48px; height:48px; border:0; background:transparent; color:var(--color-text); font-family:'Material Symbols Rounded'; font-size:24px;">grid_view</button>
+        </div>
+        <div style="flex:none; margin:0 16px 10px; padding:10px 12px; border-radius:var(--radius-md); background:var(--color-surface); border:1.5px solid var(--status-allergen); display:flex; align-items:center; gap:10px;">
+          <span style="width:40px; height:40px; flex:none; border-radius:50%; background:var(--color-primary); color:var(--color-on-primary); display:flex; align-items:center; justify-content:center; font-weight:600;">P2</span>
+          <div style="flex:1; min-width:0;"><div style="font-size:15px; font-weight:600;">Per Giulia</div><div style="display:flex; align-items:center; gap:4px; font-size:13px; font-weight:600; color:var(--status-allergen);"><span style="font-family:'Material Symbols Rounded'; font-size:16px;">warning</span>Allergie: Glutine, Latte</div></div>
+          <button style="white-space:nowrap; height:40px; padding:0 10px; border:0; background:transparent; color:var(--color-primary); font-size:14px; font-weight:600;">Cambia</button>
+        </div>
+        <div style="flex:none; margin:0 16px; height:48px; border-radius:var(--radius-md); background:var(--color-surface); border:1px solid var(--color-border); display:flex; align-items:center; gap:8px; padding:0 12px; color:var(--color-text-muted); font-size:15px;"><span style="font-family:'Material Symbols Rounded'; font-size:22px;">search</span>Cerca nel menu</div>
+        <div style="flex:none; display:flex; gap:6px; padding:12px 16px; overflow:hidden;">
+          <span style="flex:none; height:40px; padding:0 14px; border-radius:var(--radius-full); border:1.5px solid var(--color-border); background:var(--color-surface); display:flex; align-items:center; font-size:14px; font-weight:500;">Antipasti</span>
+          <span style="flex:none; height:40px; padding:0 14px; border-radius:var(--radius-full); border:1.5px solid var(--color-text); background:var(--color-text); color:var(--color-surface); display:flex; align-items:center; font-size:14px; font-weight:600;">Primi</span>
+          <span style="flex:none; height:40px; padding:0 14px; border-radius:var(--radius-full); border:1.5px solid var(--color-border); background:var(--color-surface); display:flex; align-items:center; font-size:14px; font-weight:500;">Secondi</span>
+          <span style="flex:none; height:40px; padding:0 14px; border-radius:var(--radius-full); border:1.5px solid var(--color-border); background:var(--color-surface); display:flex; align-items:center; font-size:14px; font-weight:500;">Contorni</span>
+          <span style="flex:none; height:40px; padding:0 14px; border-radius:var(--radius-full); border:1.5px solid var(--color-border); background:var(--color-surface); display:flex; align-items:center; font-size:14px; font-weight:500;">Dolci</span>
+        </div>
+        <div style="flex:1; overflow:hidden; padding:0 16px; display:flex; flex-direction:column; gap:8px;">
+          <sc-for list="{{ piatti }}" as="p" hint-placeholder-count="6">
+            <div style="display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center; padding:12px; border-radius:var(--radius-md); background:var(--color-surface); border:1px solid var(--color-border); opacity:{{ p.op }};">
+              <div style="min-width:0; display:flex; flex-direction:column; gap:4px;">
+                <div style="display:flex; align-items:baseline; justify-content:space-between; gap:8px;"><span style="font-size:16px; font-weight:600;">{{ p.name }}</span><span style="font-size:16px; font-weight:600;">{{ p.price }}</span></div>
+                <div style="font-size:13px; color:var(--color-text-muted);">{{ p.desc }}</div>
+                <div style="display:flex; align-items:center; gap:4px; flex-wrap:wrap;">
+                  <sc-for list="{{ p.tags }}" as="a" hint-placeholder-count="2"><span style="height:20px; min-width:26px; padding:0 4px; box-sizing:border-box; border-radius:4px; border:1px solid {{ a.bc }}; background:{{ a.bg }}; color:{{ a.fg }}; font-size:11px; font-weight:600; display:flex; align-items:center; justify-content:center;">{{ a.c }}</span></sc-for>
+                  <sc-if value="{{ p.conflict }}" hint-placeholder-val="{{ false }}"><span style="display:flex; align-items:center; gap:2px; font-size:12px; font-weight:600; color:var(--status-allergen);"><span style="font-family:'Material Symbols Rounded'; font-size:15px;">warning</span>{{ p.conflictTxt }}</span></sc-if>
+                  <sc-if value="{{ p.out }}" hint-placeholder-val="{{ false }}"><span style="height:20px; padding:0 8px; border-radius:10px; background:var(--color-surface-2); font-size:11px; font-weight:600; display:flex; align-items:center;">ESAURITO</span></sc-if>
+                </div>
+              </div>
+              <sc-if value="{{ p.ok }}" hint-placeholder-val="{{ true }}"><button aria-label="Aggiungi" style="width:48px; height:48px; border:0; border-radius:var(--radius-md); background:var(--color-primary); color:var(--color-on-primary); font-family:'Material Symbols Rounded'; font-size:26px;">add</button></sc-if>
+              <sc-if value="{{ p.out }}" hint-placeholder-val="{{ false }}"><button disabled="" aria-label="Esaurito" style="width:48px; height:48px; border:1.5px dashed var(--color-border); border-radius:var(--radius-md); background:transparent; color:var(--color-text-muted); font-family:'Material Symbols Rounded'; font-size:24px;">block</button></sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- 22 AVVISO ALLERGENE -->
+    <div id="22" style="display:flex; flex-direction:column; gap:12px;">
+      <div style="display:flex; align-items:center; gap:10px; font-size:15px; font-weight:600; color:#1D1A16;"><span style="background:#1D1A16; color:#fff; border-radius:6px; padding:3px 8px; font-size:13px;">22</span>Avviso allergene · bloccante</div>
+      <div style="width:390px; height:844px; border:10px solid #141210; border-radius:48px; overflow:hidden; position:relative; display:flex; flex-direction:column; background:var(--color-bg); color:var(--color-text); box-shadow:0 30px 60px rgba(0,0,0,.25);">
+        <div style="height:40px; flex:none; display:flex; align-items:center; justify-content:space-between; padding:0 26px; font-size:14px; font-weight:600;"><span>21:15</span><span style="font-family:'Material Symbols Rounded'; font-size:17px; letter-spacing:2px;">signal_cellular_alt wifi battery_full</span></div>
+        <div style="height:60px; flex:none; display:flex; align-items:center; padding:0 16px; font-size:20px; font-weight:600;">Aggiungi piatto</div>
+        <div style="flex:1; overflow:hidden; padding:0 16px; display:flex; flex-direction:column; gap:8px;">
+          <sc-for list="{{ piatti }}" as="p" hint-placeholder-count="6">
+            <div style="height:92px; border-radius:var(--radius-md); background:var(--color-surface); border:1px solid var(--color-border); padding:12px; box-sizing:border-box; font-size:16px; font-weight:600;">{{ p.name }}</div>
+          </sc-for>
+        </div>
+        <div style="position:absolute; inset:0; background:rgba(18,14,10,.62); display:flex; align-items:center; justify-content:center; padding:16px;">
+          <div role="alertdialog" style="width:100%; border-radius:var(--radius-lg); background:var(--color-surface); overflow:hidden; box-shadow:var(--shadow-lg);">
+            <div style="background:var(--status-allergen); color:#fff; padding:20px; display:flex; align-items:center; gap:12px;">
+              <span style="font-family:'Material Symbols Rounded'; font-size:36px;">warning</span>
+              <div><div style="font-size:13px; font-weight:600; letter-spacing:.08em; text-transform:uppercase;">Attenzione</div><div style="font-size:22px; font-weight:600;">Allergene per Giulia</div></div>
+            </div>
+            <div style="padding:20px; display:flex; flex-direction:column; gap:16px;">
+              <div style="font-size:16px; line-height:1.45; text-wrap:pretty;"><b>Tagliatelle al ragù</b> contiene un allergene dichiarato dall’ospite al posto <b>P2</b>.</div>
+              <div style="display:grid; grid-template-columns:auto 1fr; gap:10px 14px; align-items:center; padding:14px; border-radius:var(--radius-md); background:var(--color-surface-2);">
+                <span style="font-size:13px; color:var(--color-text-muted);">Allergene</span>
+                <span style="display:flex; align-items:center; gap:8px; font-size:16px; font-weight:600; color:var(--status-allergen);"><span style="height:24px; padding:0 6px; border-radius:4px; background:var(--status-allergen); color:#fff; font-size:12px; display:flex; align-items:center;">GL</span>Glutine</span>
+                <span style="font-size:13px; color:var(--color-text-muted);">Posto</span>
+                <span style="font-size:16px; font-weight:600;">P2 · Giulia</span>
+                <span style="font-size:13px; color:var(--color-text-muted);">Dichiarate</span>
+                <span style="font-size:15px;">Glutine, Latte</span>
+              </div>
+              <div style="font-size:13px; color:var(--color-text-muted); display:flex; gap:6px;"><span style="font-family:'Material Symbols Rounded'; font-size:17px;">info</span>Se confermi, la comanda per la cucina riporterà l’avviso allergia.</div>
+              <div style="display:flex; flex-direction:column; gap:8px;">
+                <button style="white-space:nowrap; height:56px; border:0; border-radius:var(--radius-md); background:var(--color-primary); color:var(--color-on-primary); font-size:16px; font-weight:600;">Annulla</button>
+                <button style="white-space:nowrap; height:56px; border:2px solid var(--color-danger); border-radius:var(--radius-md); background:transparent; color:var(--color-danger); font-size:16px; font-weight:600;">Conferma comunque</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 25 CONTO -->
+    <div id="25" style="display:flex; flex-direction:column; gap:12px;">
+      <div style="display:flex; align-items:center; gap:10px; font-size:15px; font-weight:600; color:#1D1A16;"><span style="background:#1D1A16; color:#fff; border-radius:6px; padding:3px 8px; font-size:13px;">25</span>Conto · per posto</div>
+      <div style="width:390px; height:844px; border:10px solid #141210; border-radius:48px; overflow:hidden; position:relative; display:flex; flex-direction:column; background:var(--color-bg); color:var(--color-text); box-shadow:0 30px 60px rgba(0,0,0,.25);">
+        <div style="height:40px; flex:none; display:flex; align-items:center; justify-content:space-between; padding:0 26px; font-size:14px; font-weight:600;"><span>22:31</span><span style="font-family:'Material Symbols Rounded'; font-size:17px; letter-spacing:2px;">signal_cellular_alt wifi battery_full</span></div>
+        <div style="height:60px; flex:none; display:flex; align-items:center; gap:4px; padding:0 4px;">
+          <button aria-label="Indietro" style="width:48px; height:48px; border:0; background:transparent; color:var(--color-text); font-family:'Material Symbols Rounded'; font-size:24px;">arrow_back</button>
+          <div style="flex:1;"><div style="font-size:20px; font-weight:600;">Conto · T5</div><div style="font-size:13px; color:var(--color-text-muted);">6 coperti · 18 righe</div></div>
+          <button style="white-space:nowrap; height:44px; padding:0 12px; display:flex; align-items:center; gap:6px; border:1px solid var(--color-border); border-radius:var(--radius-md); background:var(--color-surface); color:var(--color-text); font-size:14px; font-weight:600;"><span style="font-family:'Material Symbols Rounded'; font-size:18px;">print</span>Preconto</button>
+          <span style="width:8px;"></span>
+        </div>
+        <div style="flex:none; margin:0 16px 12px; display:grid; grid-template-columns:repeat(3,1fr); padding:3px; border-radius:var(--radius-md); background:var(--color-surface-2);">
+          <span style="height:42px; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:500; color:var(--color-text-muted);">Totale</span>
+          <span style="height:42px; display:flex; align-items:center; justify-content:center; border-radius:8px; background:var(--color-surface); box-shadow:var(--shadow-sm); font-size:14px; font-weight:600;">Per posto</span>
+          <span style="height:42px; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:500; color:var(--color-text-muted);">Alla romana</span>
+        </div>
+        <div style="flex:1; overflow:hidden; padding:0 16px; display:flex; flex-direction:column; gap:8px;">
+          <sc-for list="{{ conto }}" as="c" hint-placeholder-count="6">
+            <div style="border-radius:var(--radius-md); background:var(--color-surface); border:1px solid var(--color-border); overflow:hidden;">
+              <div style="display:flex; align-items:center; gap:10px; min-height:60px; padding:0 12px;">
+                <span style="width:36px; height:36px; flex:none; border-radius:50%; border:1.5px solid var(--color-border); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:600;">{{ c.l }}</span>
+                <div style="flex:1; min-width:0;"><div style="font-size:15px; font-weight:600;">{{ c.g }}<sc-if value="{{ c.hasG }}" hint-placeholder-val="{{ true }}"><span style="font-weight:400; color:var(--color-text-muted);"> · </span></sc-if><span style="font-weight:400; color:var(--color-text-muted); font-size:13px;">{{ c.righe }} righe</span></div><div style="display:flex; align-items:center; gap:3px; font-size:12px; font-weight:600; color:{{ c.stc }};"><span style="font-family:'Material Symbols Rounded'; font-size:14px;">{{ c.sti }}</span>{{ c.st }}</div></div>
+                <span style="font-size:17px; font-weight:600;">€ {{ c.tot }}</span>
+              </div>
+              <sc-if value="{{ c.open }}" hint-placeholder-val="{{ false }}">
+                <div style="border-top:1px solid var(--color-border); padding:8px 12px 12px; display:flex; flex-direction:column; gap:4px;">
+                  <sc-for list="{{ c.items }}" as="i" hint-placeholder-count="4"><div style="display:flex; justify-content:space-between; font-size:13px;"><span style="color:var(--color-text-muted);">{{ i.n }}</span><span>{{ i.v }}</span></div></sc-for>
+                  <button style="white-space:nowrap; margin-top:8px; height:48px; border:0; border-radius:var(--radius-md); background:var(--color-primary); color:var(--color-on-primary); font-size:15px; font-weight:600; display:flex; align-items:center; justify-content:center; gap:6px;"><span style="font-family:'Material Symbols Rounded'; font-size:20px;">payments</span>Incassa € 29,00</button>
+                </div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+        <div style="flex:none; background:var(--color-surface); border-top:1px solid var(--color-border); padding:12px 16px 22px; display:flex; flex-direction:column; gap:10px;">
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px;">
+            <div><div style="font-size:12px; color:var(--color-text-muted);">Totale</div><div style="font-size:17px; font-weight:600;">€ 176,00</div></div>
+            <div><div style="font-size:12px; color:var(--color-text-muted);">Pagato</div><div style="font-size:17px; font-weight:600; color:var(--color-success);">€ 58,50</div></div>
+            <div style="text-align:right;"><div style="font-size:12px; color:var(--color-text-muted);">Residuo</div><div style="font-size:23px; font-weight:600;">€ 117,50</div></div>
+          </div>
+          <div style="height:6px; border-radius:3px; background:var(--color-surface-2); overflow:hidden;"><div style="width:33%; height:100%; background:var(--color-success);"></div></div>
+          <button disabled="" style="height:56px; border:1.5px dashed var(--color-border); border-radius:var(--radius-md); background:var(--color-surface-2); color:var(--color-text-muted); font-size:15px; font-weight:600; display:flex; align-items:center; justify-content:center; gap:6px;"><span style="font-family:'Material Symbols Rounded'; font-size:20px;">lock</span>Chiudi tavolo · salda il residuo</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;tema&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Chiaro&quot;,&quot;Scuro&quot;],&quot;default&quot;:&quot;Chiaro&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { D: null, sel: [], center: false, multi: false, filtro: 'Tutti' };
+  componentDidMount() { import('./dati.js').then(D => this.setState({ D })); }
+  renderVals() {
+    const { D, sel, center, multi, filtro } = this.state;
+    const theme = this.props.tema === 'Scuro' ? 'dark' : 'light';
+    if (!D) return { theme };
+    const posti = D.POSTI_T5;
+    const onSeat = i => this.setState(s => {
+      if (!s.multi) return { sel: [i], center: false, filtro: posti[i].l };
+      const has = s.sel.includes(i);
+      return { sel: has ? s.sel.filter(x => x !== i) : [...s.sel, i], center: false };
+    });
+    const onCenter = () => this.setState({ sel: [], center: true, filtro: 'Tavolo' });
+    const labels = ['Tutti', ...posti.map(p => p.l), 'Tavolo'];
+    const filtri = labels.map(l => {
+      const on = l === filtro;
+      return { l, bg: on ? 'var(--color-text)' : 'var(--color-surface)', fg: on ? 'var(--color-surface)' : 'var(--color-text)', bc: on ? 'var(--color-text)' : 'var(--color-border)', onClick: () => this.setState({ filtro: l }) };
+    });
+    let hint = 'Tocca un posto per aggiungere un piatto';
+    if (multi) hint = sel.length > 1 ? `Piatto condiviso tra ${sel.map(i => posti[i].l).join(', ')}` : 'Seleziona 2 o più posti';
+    else if (center) hint = 'Piatto per tutto il tavolo';
+    else if (sel.length) hint = `${posti[sel[0]].l}${posti[sel[0]].g ? ' · ' + posti[sel[0]].g : ''} → scegli il piatto`;
+    return {
+      theme, posti, sel, centerSel: center, onSeat, onCenter,
+      multi, multiBg: multi ? 'var(--color-primary)' : 'var(--color-surface)', multiFg: multi ? 'var(--color-on-primary)' : 'var(--color-text)', multiBc: multi ? 'var(--color-primary)' : 'var(--color-border)', multiIcon: multi ? 'check_box' : 'select_check_box',
+      toggleMulti: () => this.setState(s => ({ multi: !s.multi, sel: [], center: false })),
+      hint, filtri, ordine: D.ordineFiltrato(filtro),
+      tavoli: D.tavoliView(),
+      piatti: D.piattiView(['GL', 'LA']),
+      conto: D.CONTO_POSTI
+    };
+  }
+}
+</script>
+</body>
+</html>
