@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Material+Symbols+Rounded:opsz,wght,FILL@24,500,1&display=swap">
+<style>body{margin:0;background:#D9D3C8}a{color:#1B5B52}a:hover{color:#0F3D37}button{font-family:inherit}</style>
+</helmet>
+<div data-theme="{{ theme }}" style="min-height:100vh; padding:56px; box-sizing:border-box; font-family:var(--font-family); font-variant-numeric:tabular-nums; background:var(--color-bg); color:var(--color-text); display:flex; flex-direction:column; gap:48px; max-width:1400px;">
+  <div style="display:flex; flex-direction:column; gap:6px;">
+    <div style="font-size:13px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--color-text-muted);">Gestione Tavoli · libreria</div>
+    <div style="font-size:34px; font-weight:600;">Componenti, token e flusso</div>
+    <div style="font-size:15px; color:var(--color-text-muted);">Font: IBM Plex Sans con cifre tabellari (font-variant-numeric: tabular-nums). Icone: Material Symbols Rounded, riempite, peso 500.</div>
+  </div>
+
+  <!-- FLUSSO -->
+  <section id="flusso" style="display:flex; flex-direction:column; gap:16px;">
+    <div style="font-size:22px; font-weight:600;">Flusso principale</div>
+    <div style="display:grid; grid-template-columns:repeat(6, minmax(0,1fr)); gap:0; align-items:stretch;">
+      <sc-for list="{{ flusso }}" as="f" hint-placeholder-count="6">
+        <div style="display:flex; align-items:stretch;">
+          <div style="flex:1; padding:16px; border-radius:var(--radius-md); background:var(--color-surface); border:1px solid var(--color-border); display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; align-items:center; gap:8px;"><span style="width:28px; height:28px; border-radius:50%; background:var(--color-primary); color:var(--color-on-primary); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:600;">{{ f.n }}</span><span style="font-family:'Material Symbols Rounded'; font-size:22px; color:var(--color-primary);">{{ f.i }}</span></div>
+            <div style="font-size:16px; font-weight:600;">{{ f.t }}</div>
+            <div style="font-size:13px; color:var(--color-text-muted); line-height:1.4; text-wrap:pretty;">{{ f.d }}</div>
+            <div style="margin-top:auto; font-size:12px; font-weight:600; color:var(--color-text-muted);">{{ f.s }}</div>
+            <div style="display:flex; align-items:center; gap:6px; height:26px; padding:0 8px; border-radius:13px; background:{{ f.stBg }}; color:{{ f.stFg }}; font-size:12px; font-weight:600; align-self:flex-start;">Tavolo: {{ f.st }}</div>
+          </div>
+          <div style="width:28px; display:flex; align-items:center; justify-content:center; font-family:'Material Symbols Rounded'; font-size:22px; color:var(--color-text-muted);">{{ f.arrow }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="font-size:13px; color:var(--color-text-muted);">Rami: allergene rilevato al passo 2 → dialog 22 (bloccante). Riga inviata da correggere → storno 24 con motivo. Bozze: annulla via toast per 5 s.</div>
+  </section>
+
+  <!-- TOKEN -->
+  <section style="display:flex; flex-direction:column; gap:16px;">
+    <div style="font-size:22px; font-weight:600;">Token colore · chiaro e scuro</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+      <div data-theme="light" style="padding:20px; border-radius:var(--radius-lg); background:var(--color-bg); color:var(--color-text); border:1px solid var(--color-border); display:grid; grid-template-columns:repeat(3,1fr); gap:10px;">
+        <sc-for list="{{ swatches }}" as="s" hint-placeholder-count="18"><div style="display:flex; align-items:center; gap:8px;"><span style="width:32px; height:32px; flex:none; border-radius:var(--radius-sm); background:var({{ s }}); border:1px solid var(--color-border);"></span><span style="font-size:11px; font-family:ui-monospace,monospace; color:var(--color-text-muted); word-break:break-all;">{{ s }}</span></div></sc-for>
+      </div>
+      <div data-theme="dark" style="padding:20px; border-radius:var(--radius-lg); background:var(--color-bg); color:var(--color-text); border:1px solid var(--color-border); display:grid; grid-template-columns:repeat(3,1fr); gap:10px;">
+        <sc-for list="{{ swatches }}" as="s" hint-placeholder-count="18"><div style="display:flex; align-items:center; gap:8px;"><span style="width:32px; height:32px; flex:none; border-radius:var(--radius-sm); background:var({{ s }}); border:1px solid var(--color-border);"></span><span style="font-size:11px; font-family:ui-monospace,monospace; color:var(--color-text-muted); word-break:break-all;">{{ s }}</span></div></sc-for>
+      </div>
+    </div>
+    <div style="display:flex; align-items:baseline; gap:24px; flex-wrap:wrap;">
+      <span style="font-size:var(--font-size-2xl); font-weight:600;">2xl 30</span><span style="font-size:var(--font-size-xl); font-weight:600;">xl 23</span><span style="font-size:var(--font-size-lg); font-weight:600;">lg 19</span><span style="font-size:var(--font-size-md);">md 16 · € 1.234,50</span><span style="font-size:var(--font-size-sm);">sm 14</span><span style="font-size:var(--font-size-xs);">xs 12</span>
+    </div>
+  </section>
+
+  <!-- BOTTONI -->
+  <section style="display:flex; flex-direction:column; gap:16px;">
+    <div style="font-size:22px; font-weight:600;">Pulsanti · stati</div>
+    <div style="display:grid; grid-template-columns:120px repeat(5, minmax(0,1fr)); gap:10px; align-items:center;">
+      <span></span><span style="font-size:12px; font-weight:600; color:var(--color-text-muted);">Default</span><span style="font-size:12px; font-weight:600; color:var(--color-text-muted);">Hover / pressed</span><span style="font-size:12px; font-weight:600; color:var(--color-text-muted);">Focus</span><span style="font-size:12px; font-weight:600; color:var(--color-text-muted);">Disattivato</span><span style="font-size:12px; font-weight:600; color:var(--color-text-muted);">Caricamento</span>
+      <span style="font-size:14px; font-weight:600;">Primario 56</span>
+      <button style="height:56px; border:0; border-radius:var(--radius-md); background:var(--color-primary); color:var(--color-on-primary); font-size:16px; font-weight:600;">Invia comanda</button>
+      <button style="height:56px; border:0; border-radius:var(--radius-md); background:color-mix(in oklab, var(--color-primary) 82%, #000); color:var(--color-on-primary); font-size:16px; font-weight:600; transform:scale(.98);">Invia comanda</button>
+      <button style="height:56px; border:0; border-radius:var(--radius-md); background:var(--color-primary); color:var(--color-on-primary); font-size:16px; font-weight:600; outline:3px solid var(--color-info); outline-offset:2px;">Invia comanda</button>
+      <button style="height:56px; border:1.5px dashed var(--color-border); border-radius:var(--radius-md); background:var(--color-surface-2); color:var(--color-text-muted); font-size:16px; font-weight:600;">Invia comanda</button>
+      <button style="height:56px; border:0; border-radius:var(--radius-md); background:var(--color-primary); color:var(--color-on-primary); font-size:16px; font-weight:600; opacity:.8;">Invio…</button>
+      <span style="font-size:14px; font-weight:600;">Secondario 48</span>
+      <button style="height:48px; border:1px solid var(--color-border); border-radius:var(--radius-md); background:var(--color-surface); color:var(--color-text); font-size:15px; font-weight:600;">Marcia</button>
+      <button style="height:48px; border:1px solid var(--color-text-muted); border-radius:var(--radius-md); background:var(--color-surface-2); color:var(--color-text); font-size:15px; font-weight:600;">Marcia</button>
+      <button style="height:48px; border:1px solid var(--color-border); border-radius:var(--radius-md); background:var(--color-surface); color:var(--color-text); font-size:15px; font-weight:600; outline:3px solid var(--color-info); outline-offset:2px;">Marcia</button>
+      <button style="height:48px; border:1px solid var(--color-border); border-radius:var(--radius-md); background:transparent; color:var(--color-text-muted); font-size:15px; font-weight:600; opacity:.6;">Marcia</button>
+      <span></span>
+      <span style="font-size:14px; font-weight:600;">Pericolo</span>
+      <button style="height:48px; border:2px solid var(--color-danger); border-radius:var(--radius-md); background:transparent; color:var(--color-danger); font-size:15px; font-weight:600;">Conferma comunque</button>
+      <button style="height:48px; border:0; border-radius:var(--radius-md); background:var(--color-danger); color:#fff; font-size:15px; font-weight:600;">Storna</button>
+      <span></span><span></span><span></span>
+    </div>
+  </section>
+
+  <!-- CHIP / TAB / CONTROLLI -->
+  <section style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:24px;">
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <div style="font-size:18px; font-weight:600;">Chip</div>
+      <div style="display:flex; flex-wrap:wrap; gap:8px;">
+        <span style="height:40px; padding:0 14px; border-radius:var(--radius-full); border:1.5px solid var(--color-border); background:var(--color-surface); display:flex; align-items:center; font-size:14px;">Default</span>
+        <span style="height:40px; padding:0 14px; border-radius:var(--radius-full); background:var(--color-text); color:var(--color-surface); display:flex; align-items:center; font-size:14px; font-weight:600;">Selezionato</span>
+        <span style="height:40px; padding:0 14px; border-radius:var(--radius-full); border:1.5px solid var(--color-border); display:flex; align-items:center; font-size:14px; opacity:.5;">Disattivato</span>
+        <span style="height:40px; padding:0 14px; border-radius:var(--radius-full); border:1.5px solid var(--status-allergen); color:var(--status-allergen); display:flex; align-items:center; gap:4px; font-size:14px; font-weight:600;"><span style="font-family:'Material Symbols Rounded'; font-size:16px;">warning</span>Errore</span>
+      </div>
+      <div style="font-size:18px; font-weight:600; margin-top:8px;">Stepper · Toggle · Checkbox</div>
+      <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+        <div style="display:grid; grid-template-columns:48px 56px 48px; height:48px; border:1px solid var(--color-border); border-radius:var(--radius-md); overflow:hidden; background:var(--color-surface);"><span style="background:var(--color-surface-2); display:flex; align-items:center; justify-content:center; font-family:'Material Symbols Rounded'; opacity:.4;">remove</span><span style="display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:600;">1</span><span style="background:var(--color-surface-2); display:flex; align-items:center; justify-content:center; font-family:'Material Symbols Rounded';">add</span></div>
+        <span role="switch" style="width:52px; height:32px; border-radius:16px; background:var(--color-primary); position:relative;"><span style="position:absolute; right:4px; top:4px; width:24px; height:24px; border-radius:50%; background:var(--color-on-primary);"></span></span>
+        <span role="switch" style="width:52px; height:32px; border-radius:16px; background:var(--color-surface-2); border:2px solid var(--color-border); box-sizing:border-box; position:relative;"><span style="position:absolute; left:3px; top:3px; width:22px; height:22px; border-radius:50%; background:var(--color-text-muted);"></span></span>
+        <span style="width:24px; height:24px; border-radius:6px; background:var(--color-primary); color:var(--color-on-primary); display:flex; align-items:center; justify-content:center; font-family:'Material Symbols Rounded'; font-size:18px;">check</span>
+        <span style="width:24px; height:24px; border-radius:6px; border:2px solid var(--color-text-muted); box-sizing:border-box;"></span>
+        <span style="width:24px; height:24px; border-radius:6px; border:2px solid var(--color-danger); box-sizing:border-box;"></span>
+      </div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <div style="font-size:18px; font-weight:600;">Campo · ricerca</div>
+      <div style="height:48px; border-radius:var(--radius-md); background:var(--color-surface); border:1px solid var(--color-border); display:flex; align-items:center; gap:8px; padding:0 12px; color:var(--color-text-muted);"><span style="font-family:'Material Symbols Rounded'; font-size:22px;">search</span>Cerca nel menu</div>
+      <div style="height:48px; border-radius:var(--radius-md); background:var(--color-surface); border:2px solid var(--color-primary); display:flex; align-items:center; gap:8px; padding:0 12px; box-shadow:0 0 0 4px color-mix(in oklab, var(--color-primary) 18%, transparent);"><span style="font-family:'Material Symbols Rounded'; font-size:22px; color:var(--color-text-muted);">search</span>taglia<span style="width:2px; height:20px; background:var(--color-primary);"></span></div>
+      <div style="display:flex; flex-direction:column; gap:4px;"><div style="height:48px; border-radius:var(--radius-md); background:var(--color-surface); border:2px solid var(--color-danger); display:flex; align-items:center; padding:0 12px;">€ 0,00</div><span style="display:flex; align-items:center; gap:4px; font-size:13px; font-weight:500; color:var(--color-danger);"><span style="font-family:'Material Symbols Rounded'; font-size:16px;">error</span>Il prezzo deve essere maggiore di zero</span></div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <div style="font-size:18px; font-weight:600;">Badge · contatore · timer</div>
+      <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+        <span style="min-width:22px; height:22px; padding:0 6px; box-sizing:border-box; border-radius:11px; background:var(--color-text); color:var(--color-surface); font-size:12px; font-weight:600; display:flex; align-items:center; justify-content:center;">3</span>
+        <span style="width:26px; height:26px; border-radius:50%; background:var(--status-allergen); color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Material Symbols Rounded'; font-size:16px;">warning</span>
+        <span style="display:flex; align-items:center; gap:4px; padding:0 10px; height:32px; border-radius:16px; background:var(--color-surface-2); font-size:14px; font-weight:600;"><span style="font-family:'Material Symbols Rounded'; font-size:17px;">timer</span>22′</span>
+        <span style="display:flex; align-items:center; gap:4px; padding:0 10px; height:32px; border-radius:16px; background:var(--status-held); color:#1D1A16; font-size:14px; font-weight:600;"><span style="font-family:'Material Symbols Rounded'; font-size:17px;">timer</span>55′</span>
+        <span style="display:flex; align-items:center; gap:2px; height:26px; padding:0 8px 0 6px; border-radius:13px; background:var(--color-surface-2); font-size:12px; font-weight:600;"><span style="font-family:'Material Symbols Rounded'; font-size:15px;">person</span>P2</span>
+        <span style="display:flex; align-items:center; gap:2px; height:26px; padding:0 8px 0 6px; border-radius:13px; background:var(--color-surface-2); font-size:12px; font-weight:600;"><span style="font-family:'Material Symbols Rounded'; font-size:15px;">group</span>×3</span>
+        <span style="display:flex; align-items:center; gap:2px; height:26px; padding:0 8px 0 6px; border-radius:13px; background:var(--color-surface-2); font-size:12px; font-weight:600;"><span style="font-family:'Material Symbols Rounded'; font-size:15px;">table_restaurant</span>Tavolo</span>
+      </div>
+      <div style="font-size:13px; color:var(--color-text-muted);">Timer: neutro &lt; 20′ dall’ultima comanda, ambra ≥ 20′ con portate in attesa.</div>
+    </div>
+  </section>
+
+  <!-- CARD TAVOLO -->
+  <section style="display:flex; flex-direction:column; gap:16px;">
+    <div style="font-size:22px; font-weight:600;">Card tavolo · 5 stati + allergie</div>
+    <div style="display:flex; gap:24px; flex-wrap:wrap;">
+      <sc-for list="{{ stati }}" as="t" hint-placeholder-count="6">
+        <div style="display:flex; flex-direction:column; gap:8px; align-items:center;">
+          <div style="position:relative; width:104px; height:104px; border-radius:var(--radius-md); background:{{ t.bg }}; color:{{ t.fg }}; border:2px {{ t.bs }} {{ t.bc }}; box-sizing:border-box; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;">
+            <span style="font-size:24px; font-weight:600;">{{ t.lab }}</span>
+            <span style="display:flex; align-items:center; gap:3px; font-size:13px; font-weight:500;"><span style="font-family:'Material Symbols Rounded'; font-size:16px;">{{ t.icon }}</span>{{ t.meta }}</span>
+            <sc-if value="{{ t.alg }}" hint-placeholder-val="{{ false }}"><span style="position:absolute; top:-9px; right:-9px; width:28px; height:28px; border-radius:50%; background:var(--status-allergen); color:#fff; border:2px solid var(--color-bg); display:flex; align-items:center; justify-content:center; font-family:'Material Symbols Rounded'; font-size:17px;">warning</span></sc-if>
+          </div>
+          <span style="font-size:13px; font-weight:600;">{{ t.txt }}</span><span style="font-size:11px; font-family:ui-monospace,monospace; color:var(--color-text-muted);">{{ t.tok }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- TAVOLO CON POSTI -->
+  <section style="display:flex; flex-direction:column; gap:16px;">
+    <div style="font-size:22px; font-weight:600;">Tavolo con posti · parametrico (1–20 posti)</div>
+    <div style="display:flex; gap:32px; flex-wrap:wrap; align-items:flex-end;">
+      <div style="display:flex; flex-direction:column; gap:8px; align-items:center;"><dc-import name="TavoloPosti" shape="round" width="200" height="200" seat-size="48" seats="{{ s2 }}" hint-size="200px,200px"></dc-import><span style="font-size:13px; color:var(--color-text-muted);">Tonda · 2</span></div>
+      <div style="display:flex; flex-direction:column; gap:8px; align-items:center;"><dc-import name="TavoloPosti" shape="square" width="240" height="240" seat-size="52" seats="{{ s4 }}" selected="{{ sel1 }}" hint-size="240px,240px"></dc-import><span style="font-size:13px; color:var(--color-text-muted);">Quadrata · 4 · posto selezionato</span></div>
+      <div style="display:flex; flex-direction:column; gap:8px; align-items:center;"><dc-import name="TavoloPosti" shape="rect" width="420" height="230" seat-size="52" seats="{{ s8 }}" selected="{{ selMulti }}" hint-size="420px,230px"></dc-import><span style="font-size:13px; color:var(--color-text-muted);">Rettangolare · 8 · multi-selezione (P2, P3, P7)</span></div>
+      <div style="display:flex; flex-direction:column; gap:8px; align-items:center;"><dc-import name="TavoloPosti" shape="round" width="340" height="340" seat-size="44" seats="{{ s12 }}" center-selected="{{ true }}" hint-size="340px,340px"></dc-import><span style="font-size:13px; color:var(--color-text-muted);">Tonda · 12 (2 extra tratteggiati) · “Tavolo” attivo</span></div>
+    </div>
+  </section>
+
+  <!-- RIGHE -->
+  <section style="display:flex; flex-direction:column; gap:16px;">
+    <div style="font-size:22px; font-weight:600;">Riga d’ordine · stati</div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(340px,1fr)); gap:8px;">
+      <sc-for list="{{ righe }}" as="l" hint-placeholder-count="4">
+        <div style="display:grid; grid-template-columns:auto 1fr auto; gap:10px; align-items:center; min-height:56px; padding:8px 12px; border-radius:var(--radius-md); background:var(--color-surface); border:1.5px {{ l.bs }} {{ l.bc }}; box-sizing:border-box;">
+          <span style="display:flex; align-items:center; gap:2px; height:26px; padding:0 8px 0 6px; border-radius:13px; background:var(--color-surface-2); font-size:12px; font-weight:600;"><span style="font-family:'Material Symbols Rounded'; font-size:15px;">{{ l.ai }}</span>{{ l.at }}</span>
+          <div><div style="font-size:15px; font-weight:500; text-decoration:{{ l.td }}; color:{{ l.col }};">{{ l.q }}× {{ l.name }}</div><div style="font-size:12px; color:var(--color-text-muted);">{{ l.sub }}</div></div>
+          <div style="text-align:right;"><div style="font-size:15px; font-weight:600; text-decoration:{{ l.td }}; color:{{ l.col }};">{{ l.price }}</div><div style="display:flex; align-items:center; justify-content:flex-end; gap:2px; font-size:11px; font-weight:600; color:{{ l.stc }};"><span style="font-family:'Material Symbols Rounded'; font-size:13px;">{{ l.sti }}</span>{{ l.st }}</div></div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="font-size:13px; color:var(--color-text-muted);">Bozza: swipe a sinistra = elimina (con toast Annulla), tap = modifica. Inviata: tap → menu (Servita, Storna). Stornata: solo lettura.</div>
+  </section>
+
+  <!-- ALLERGENI -->
+  <section style="display:flex; flex-direction:column; gap:16px;">
+    <div style="font-size:22px; font-weight:600;">14 allergeni</div>
+    <div style="display:grid; grid-template-columns:repeat(7, minmax(0,1fr)); gap:10px;">
+      <sc-for list="{{ allergeni }}" as="a" hint-placeholder-count="14">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:8px; padding:14px 6px; border-radius:var(--radius-md); background:var(--color-surface); border:1px solid var(--color-border);">
+          <span style="width:44px; height:44px; border-radius:var(--radius-md); border:1.5px solid var(--color-text-muted); display:flex; align-items:center; justify-content:center; font-family:'Material Symbols Rounded'; font-size:26px;">{{ a.i }}</span>
+          <span style="height:20px; padding:0 6px; border-radius:4px; border:1px solid var(--color-border); font-size:11px; font-weight:600; display:flex; align-items:center; color:var(--color-text-muted);">{{ a.c }}</span>
+          <span style="font-size:13px; font-weight:500; text-align:center;">{{ a.n }}</span>
+        </div>
+      </sc-for>
+    </div>
+    <div style="font-size:13px; color:var(--color-text-muted);">Glifi provvisori da Material Symbols; il codice a due lettere (GL, LA…) accompagna sempre l’icona ed è la forma compatta su card e righe. Sostituibili con un set dedicato mantenendo griglia 24 px.</div>
+  </section>
+
+  <!-- FEEDBACK -->
+  <section style="display:grid; grid-template-columns:repeat(auto-fit, minmax(340px,1fr)); gap:24px;">
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <div style="font-size:18px; font-weight:600;">Toast · banner</div>
+      <div style="height:52px; border-radius:var(--radius-md); background:var(--color-text); color:var(--color-surface); display:flex; align-items:center; gap:10px; padding:0 6px 0 16px; font-size:14px;"><span style="font-family:'Material Symbols Rounded'; font-size:18px;">delete</span><span style="flex:1;">Riga eliminata</span><span style="height:44px; padding:0 12px; display:flex; align-items:center; font-weight:600; text-decoration:underline;">Annulla</span></div>
+      <div style="display:flex; gap:10px; padding:12px; border-radius:var(--radius-md); background:color-mix(in oklab, var(--color-info) 12%, var(--color-surface)); border:1px solid var(--color-info);"><span style="font-family:'Material Symbols Rounded'; font-size:22px; color:var(--color-info);">info</span><div style="font-size:14px;"><b>Informativo.</b> 2 piatti esauriti nel menu di stasera.</div></div>
+      <div style="display:flex; gap:10px; padding:12px; border-radius:var(--radius-md); background:var(--status-allergen); color:#fff;"><span style="font-family:'Material Symbols Rounded'; font-size:22px;">warning</span><div style="font-size:14px;"><b>Bloccante.</b> Allergene per P2 · Giulia: Glutine. Richiede una scelta.</div></div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <div style="font-size:18px; font-weight:600;">Empty state</div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px;">
+        <sc-for list="{{ empty }}" as="e" hint-placeholder-count="3"><div style="padding:18px 12px; border-radius:var(--radius-md); border:1.5px dashed var(--color-border); display:flex; flex-direction:column; align-items:center; gap:8px; text-align:center;"><span style="font-family:'Material Symbols Rounded'; font-size:32px; color:var(--color-text-muted);">{{ e.i }}</span><span style="font-size:14px; font-weight:600;">{{ e.t }}</span><span style="font-size:12px; color:var(--color-text-muted);">{{ e.d }}</span><span style="font-size:13px; font-weight:600; color:var(--color-primary);">{{ e.a }}</span></div></sc-for>
+      </div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <div style="font-size:18px; font-weight:600;">Bottom bar sala</div>
+      <div style="display:flex; gap:8px; padding:8px; border-radius:var(--radius-md); background:var(--color-surface); border:1px solid var(--color-border);">
+        <span style="flex:1; height:56px; border-radius:var(--radius-md); background:var(--color-primary); color:var(--color-on-primary); display:flex; align-items:center; justify-content:center; gap:6px; font-weight:600;">Invia comanda</span>
+        <span style="width:60px; height:56px; border:1px solid var(--color-border); border-radius:var(--radius-md); display:flex; flex-direction:column; align-items:center; justify-content:center; font-size:11px; font-weight:600;"><span style="font-family:'Material Symbols Rounded'; font-size:22px; color:var(--color-warning);">play_circle</span>Marcia</span>
+        <span style="width:60px; height:56px; border:1px solid var(--color-border); border-radius:var(--radius-md); display:flex; flex-direction:column; align-items:center; justify-content:center; font-size:11px; font-weight:600;"><span style="font-family:'Material Symbols Rounded'; font-size:22px;">receipt_long</span>Conto</span>
+      </div>
+      <div style="font-size:13px; color:var(--color-text-muted);">“Invia comanda” è disattivato senza bozze; il contatore mostra le righe in bozza.</div>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;tema&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Chiaro&quot;,&quot;Scuro&quot;],&quot;default&quot;:&quot;Chiaro&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { D: null };
+  componentDidMount() { import('./dati.js').then(D => this.setState({ D })); }
+  renderVals() {
+    const { D } = this.state;
+    const theme = this.props.tema === 'Scuro' ? 'dark' : 'light';
+    const stBadge = (st) => ({ free:['var(--color-surface-2)','var(--color-text)'], open:['var(--status-open)','var(--color-text)'], active:['var(--status-active)','var(--color-on-primary)'], held:['var(--status-held)','#1D1A16'], bill:['var(--status-bill)','var(--color-on-primary)'] }[st]);
+    const flussoRaw = [
+      ['meeting_room','Apri tavolo','Tocca un tavolo libero, imposta coperti e cameriere.','Schermate 16 → 17','open','Aperto'],
+      ['touch_app','Assegna piatti','Posto → categoria → piatto → conferma. Multi-selezione per i condivisi, “Tavolo” per i comuni.','18 → 20 → 21 (22)','open','Aperto'],
+      ['send','Invia comanda','Riepilogo diviso Cucina/Bar; le portate successive restano in attesa.','23','active','In corso'],
+      ['play_circle','Marcia portata','Quando il cliente è pronto, “Marcia i secondi” notifica la cucina.','18','held','Portata in attesa'],
+      ['call_split','Conto per posto','Totale / Per posto / Alla romana, preconto e pagamenti parziali.','25 → 26','bill','Conto'],
+      ['task_alt','Chiudi','A residuo zero il tavolo si chiude e torna libero.','25 → 16','free','Libero']
+    ];
+    const flusso = flussoRaw.map(([i,t,d,s,st,stl], k) => { const [bg, fg] = stBadge(st); return { n: k + 1, i, t, d, s, st: stl, stBg: bg, stFg: fg, arrow: k < 5 ? 'arrow_forward' : '' }; });
+    const swatches = ['--color-bg','--color-surface','--color-surface-2','--color-border','--color-text','--color-text-muted','--color-primary','--color-on-primary','--color-danger','--color-warning','--color-success','--color-info','--status-free','--status-open','--status-active','--status-held','--status-bill','--status-allergen'];
+    const icons = { GL:'grain', CR:'set_meal', UO:'egg', PE:'phishing', AR:'nutrition', SO:'eco', LA:'water_full', FG:'park', SD:'grass', SN:'emoji_food_beverage', SE:'scatter_plot', SF:'wine_bar', LU:'spa', MO:'water' };
+    const seats = (n, extra = 0) => Array.from({ length: n }, (_, i) => ({ l: 'P' + (i + 1), x: i >= n - extra, n: i % 3 === 0 ? 1 : 0, a: i === 1 }));
+    const base = {
+      theme, flusso, swatches,
+      s2: [{ l:'P1', g:'Ada', n:2 }, { l:'P2' }], s4: seats(4), sel1: [0], s8: seats(8), selMulti: [1, 2, 6], s12: seats(12, 2),
+      empty: [['table_restaurant','Nessun tavolo','Crea i tavoli per questa area.','Crea in blocco'],['menu_book','Menu vuoto','Aggiungi la prima categoria.','Nuova categoria'],['receipt','Nessun ordine','Tocca un posto per iniziare.','']].map(([i,t,d,a]) => ({ i, t, d, a }))
+    };
+    if (!D) return base;
+    const tok = { free:'--status-free', open:'--status-open', active:'--status-active', held:'--status-held', bill:'--status-bill' };
+    const stati = ['free','open','active','held','bill'].map((k, i) => ({ ...D.STATI[k], lab: 'T' + (i + 1), meta: k === 'free' ? '4 posti' : '4 · ' + ['','6′','22′','55′','1h40′'][i], alg: false, tok: tok[k] }));
+    stati.push({ ...D.STATI.active, lab: 'T6', meta: '6 · 1h12′', alg: true, txt: 'Allergie (badge)', tok: '--status-allergen' });
+    const righe = D.ORDINE.flatMap(g => g.lines);
+    return {
+      ...base, stati,
+      righe: [righe[5], righe[2], righe[1], righe[6]].map(l => ({ ...l, sub: l.sub || '' })),
+      allergeni: D.ALLERGENI.map(([c, n]) => ({ c, n, i: icons[c] }))
+    };
+  }
+}
+</script>
+</body>
+</html>
