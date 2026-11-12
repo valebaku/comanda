@@ -57,7 +57,20 @@ node --test
 
 1. Su GitHub apri **Settings → Pages**.
 2. In **Source** scegli *Deploy from a branch*, poi il branch (per esempio `main`) e la cartella `/ (root)`.
-3. L'app sarà disponibile su `https://<utente>.github.io/<nome-repo>/`.
+3. L'app è pubblicata su **<https://valebaku.github.io/comanda/>** (dal branch `main`).
+
+### Procedura di rilascio
+
+1. Lo sviluppo avviene su un branch, mai direttamente su `main`.
+2. Prima del rilascio: `node --test` deve passare e `VERSIONE` in `sw.js` va aumentata se sono cambiati i file dell'app.
+3. **Ogni rilascio passa da una pull request** verso `main`. GitHub Pages pubblica `main`, quindi l'app pubblica cambia solo quando la PR viene unita.
+4. Dopo il merge (Pages impiega 1–2 minuti), verifica l'URL pubblicato:
+
+   ```bash
+   node scripts/verifica-pages.cjs
+   ```
+
+   Lo script controlla che ogni file dell'app risponda e sia identico al checkout locale (quindi esegui il comando dopo aver aggiornato il checkout a `main`), che l'app si avvii in Chromium senza errori, che il service worker sia attivo e che l'app si ricarichi offline. Esce con errore se qualcosa non va. Accetta un URL diverso come argomento.
 
 Dopo ogni modifica ai file dell'app, aumenta `VERSIONE` in `sw.js`: così i dispositivi su cui l'app è installata scaricano la nuova versione (la vedono alla seconda apertura). Se aggiungi un file JS o CSS, aggiungilo anche a `FILE_APP` in `sw.js` (lo controlla un test).
 
@@ -83,6 +96,7 @@ js/lib/esempio.js       dati di esempio
 js/lib/ui.js            componenti: dialoghi, conferme, toast, stepper, chip…
 js/views/               una vista per schermata (sala, tavolo, conto, admin/)
 tests/                  test con node --test
+scripts/verifica-pages.cjs  verifica dell'app pubblicata su GitHub Pages
 design/                 handoff di Claude Design (mockup HTML, token, note)
 ```
 
