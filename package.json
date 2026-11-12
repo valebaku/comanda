@@ -5,6 +5,7 @@
   "description": "Gestione tavoli ristorante — HTML, CSS e JS vanilla",
   "scripts": {
     "test": "node --test",
+    "verifica": "node scripts/verifica-pages.cjs",
     "start": "python3 -m http.server 8000"
   }
 }
